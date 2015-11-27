@@ -6,7 +6,7 @@ var userRoutes = require('./routes/userroutes');
 // SETUP
 // =============================================================================
 
-mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o');
+mongoose.connect('mongodb://mongo/usernet');
 
 var app = express();
 
