@@ -6,7 +6,13 @@ var userRoutes = require('./routes/userroutes');
 // SETUP
 // =============================================================================
 
-mongoose.connect('mongodb://mongo/usernet');
+dburl = 'mongodb://mongo/usernet';
+mongoose.connect(dburl, function(err) {
+  if (err) {
+    console.log("Failed to initialize Database. Ensure connectivity to '" + dburl + "'");
+    throw err;
+  }
+});
 
 var app = express();
 

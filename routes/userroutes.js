@@ -8,6 +8,7 @@ module.exports = function(router) {
     .get(function(req, res) {
       User.find(function(err, users) {
         if (err) {
+          console.error(err);
           res.send(err);
         }
 
@@ -24,6 +25,7 @@ module.exports = function(router) {
 
       user.save(function(err) {
         if (err) {
+          console.error(err);
           res.send(err);
         }
 
@@ -38,6 +40,7 @@ module.exports = function(router) {
     .get(function(req, res) {
       User.findById(req.params.user_id, function(err, user) {
         if (err) {
+          console.error(err);
           res.send(err);
         }
         res.json(user);
@@ -50,6 +53,7 @@ module.exports = function(router) {
       User.findById(req.params.user_id, function(err, user) {
 
         if (err) {
+          console.error(err);
           res.send(err);
         }
 
@@ -57,6 +61,7 @@ module.exports = function(router) {
 
         user.save(function(err) {
           if (err) {
+            console.error(err);
             res.send(err);
           }
 
@@ -72,6 +77,7 @@ module.exports = function(router) {
         _id: req.params.user_id
       }, function(err, user) {
         if (err) {
+          console.error(err);
           res.send(err);
         }
 
