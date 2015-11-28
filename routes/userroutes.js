@@ -6,6 +6,8 @@ module.exports = function(router) {
 
     // get users (GET http://localhost:8080/api/users)
     .get(function(req, res) {
+      console.log('get users');
+
       User.find(function(err, users) {
         if (err) {
           console.error(err);
@@ -19,6 +21,7 @@ module.exports = function(router) {
 
     // create a user (POST http://localhost:8080/api/users)
     .post(function(req, res) {
+      console.log('create user');
 
       var user = new User();
       user.name = req.body.name;
@@ -38,6 +41,8 @@ module.exports = function(router) {
 
     // get the user with that id (GET http://localhost:8080/api/users/:user_id)
     .get(function(req, res) {
+      console.log('get user ' + req.params.user_id);
+
       User.findById(req.params.user_id, function(err, user) {
         if (err) {
           console.error(err);
@@ -49,6 +54,7 @@ module.exports = function(router) {
 
     // update the user with this id (PUT http://localhost:8080/api/users/:user_id)
     .put(function(req, res) {
+      console.log('update user ' + req.params.user_id);
 
       User.findById(req.params.user_id, function(err, user) {
 
@@ -73,6 +79,8 @@ module.exports = function(router) {
 
     // delete the user with this id (DELETE http://localhost:8080/api/users/:user_id)
     .delete(function(req, res) {
+      console.log('delete user ' + req.params.user_id);
+
       User.remove({
         _id: req.params.user_id
       }, function(err, user) {
