@@ -6,6 +6,8 @@ var userRoutes = require('./routes/userroutes');
 // SETUP
 // =============================================================================
 
+console.log("UserNet Version '" + require('./package.json').version + "'");
+
 dburl = 'mongodb://mongo/usernet';
 mongoose.connect(dburl, function(err) {
   if (err) {
