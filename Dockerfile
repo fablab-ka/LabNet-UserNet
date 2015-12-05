@@ -1,6 +1,6 @@
 FROM node:4.2
 
-EXPOSE 8080
+EXPOSE 4010
 
 WORKDIR /src
 

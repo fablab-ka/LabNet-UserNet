@@ -4,7 +4,7 @@ module.exports = function(router) {
 
   router.route('/users')
 
-    // get users (GET http://localhost:8080/api/users)
+    // get users (GET http://localhost:4010/api/users)
     .get(function(req, res) {
       console.log('get users');
 
@@ -19,7 +19,7 @@ module.exports = function(router) {
     })
 
 
-    // create a user (POST http://localhost:8080/api/users)
+    // create a user (POST http://localhost:4010/api/users)
     .post(function(req, res) {
       console.log('create user');
 
@@ -39,7 +39,7 @@ module.exports = function(router) {
 
   router.route('/users/:user_id')
 
-    // get the user with that id (GET http://localhost:8080/api/users/:user_id)
+    // get the user with that id (GET http://localhost:4010/api/users/:user_id)
     .get(function(req, res) {
       console.log('get user ' + req.params.user_id);
 
@@ -48,11 +48,16 @@ module.exports = function(router) {
           console.error(err);
           res.send(err);
         }
-        res.json(user);
+
+        if (user) {
+          res.json(user);
+        } else {
+          res.status(404).send('Not found');
+        }
       });
     })
 
-    // update the user with this id (PUT http://localhost:8080/api/users/:user_id)
+    // update the user with this id (PUT http://localhost:4010/api/users/:user_id)
     .put(function(req, res) {
       console.log('update user ' + req.params.user_id);
 
@@ -77,7 +82,7 @@ module.exports = function(router) {
       });
     })
 
-    // delete the user with this id (DELETE http://localhost:8080/api/users/:user_id)
+    // delete the user with this id (DELETE http://localhost:4010/api/users/:user_id)
     .delete(function(req, res) {
       console.log('delete user ' + req.params.user_id);
 
