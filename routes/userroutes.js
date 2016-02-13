@@ -12,6 +12,7 @@ module.exports = function(router) {
         if (err) {
           console.error(err);
           res.send(err);
+          return;
         }
 
         res.json(users);
@@ -30,6 +31,7 @@ module.exports = function(router) {
         if (err) {
           console.error(err);
           res.send(err);
+          return;
         }
 
         res.json({ message: 'User created!' });
@@ -47,6 +49,7 @@ module.exports = function(router) {
         if (err) {
           console.error(err);
           res.send(err);
+          return;
         }
 
         if (user) {
@@ -61,23 +64,15 @@ module.exports = function(router) {
     .put(function(req, res) {
       console.log('update user ' + req.params.user_id);
 
-      User.findById(req.params.user_id, function(err, user) {
+      User.findByIdAndUpdate(req.params.user_id, { $set:req.body }, function(err) {
 
         if (err) {
           console.error(err);
           res.send(err);
+          return;
         }
 
-        user.name = req.body.name;
-
-        user.save(function(err) {
-          if (err) {
-            console.error(err);
-            res.send(err);
-          }
-
-          res.json({ message: 'User updated!' });
-        });
+        res.json({ message: 'User updated!' });
 
       });
     })
@@ -86,12 +81,11 @@ module.exports = function(router) {
     .delete(function(req, res) {
       console.log('delete user ' + req.params.user_id);
 
-      User.remove({
-        _id: req.params.user_id
-      }, function(err, user) {
+      User.findById(req.params.user_id).remove(function(err) {
         if (err) {
           console.error(err);
           res.send(err);
+          return;
         }
 
         res.json({ message: 'Successfully deleted' });
